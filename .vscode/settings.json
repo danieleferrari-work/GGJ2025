@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "unity-template-3d.sln"
+    "dotnet.defaultSolution": "GGJ2025.sln"
 }
