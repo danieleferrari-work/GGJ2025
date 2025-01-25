@@ -48,10 +48,7 @@ public class PlayerMovementManager : MonoBehaviour
 
     private void UpdatePlayerPosition()
     {
-        float x = arena.Radius * Mathf.Cos(currentAngle);
-        float z = arena.Radius * Mathf.Sin(currentAngle);
-        var targetPosition = new Vector3(x, playerTransform.position.y, z);
-        playerTransform.position = targetPosition;
+        playerTransform.position = CircleUtils.GetPositionBasedOnAngle(arena.transform.position, arena.Radius, currentAngle);
     }
 
     private void LookAtOpponent()

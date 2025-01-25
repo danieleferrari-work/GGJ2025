@@ -96,8 +96,8 @@ public class Arena : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, radius);
         
         // Calcola le nuove posizioni basate sugli angoli
-        Vector3 firstAnglePosition = new Vector3(Mathf.Cos(firstAngle) * radius, 0, Mathf.Sin(firstAngle) * radius) + transform.position;
-        Vector3 secondAnglePosition = new Vector3(Mathf.Cos(secondAngle) * radius, 0, Mathf.Sin(secondAngle) * radius) + transform.position;
+        Vector3 firstAnglePosition = CircleUtils.GetPositionBasedOnAngle(transform.position, radius, firstAngle);
+        Vector3 secondAnglePosition =  CircleUtils.GetPositionBasedOnAngle(transform.position, radius, secondAngle);
 
         // Disegna i Gizmos utilizzando le nuove posizioni
         Gizmos.color = Color.red;
