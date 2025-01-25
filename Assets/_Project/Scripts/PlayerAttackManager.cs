@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlayerAttackManager : MonoBehaviour
@@ -7,6 +6,7 @@ public class PlayerAttackManager : MonoBehaviour
     [SerializeField] Transform bulletSpawnPoint;
 
     private InputManager inputManager;
+    private GameManager gameManager;
     private int playerIndex;
     private float attackDelay;
     private float timeSinceLastAttack;
@@ -21,6 +21,7 @@ public class PlayerAttackManager : MonoBehaviour
     void Awake()
     {
         inputManager = FindFirstObjectByType<InputManager>();
+        gameManager = FindFirstObjectByType<GameManager>();
     }
 
     void Update()
@@ -31,6 +32,7 @@ public class PlayerAttackManager : MonoBehaviour
         {
             Instantiate(bullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
             timeSinceLastAttack = 0f;
+            gameManager.AlterEquilibrium(playerIndex, bullet.EquilibriumAlteration);
         }
     }
 }

@@ -7,7 +7,7 @@ public class PlayerMovementManager : MonoBehaviour
 
     private InputManager inputManager;
     private GameManager gameManager;
-    private MovementCircle movementCircle;
+    private Arena arena;
     private float currentAngle = 0;
     private int playerIndex;
     private float speed;
@@ -23,7 +23,7 @@ public class PlayerMovementManager : MonoBehaviour
     void Awake()
     {
         inputManager = FindFirstObjectByType<InputManager>();
-        movementCircle = FindFirstObjectByType<MovementCircle>();
+        arena = FindFirstObjectByType<Arena>();
         gameManager = FindFirstObjectByType<GameManager>();
     }
 
@@ -39,8 +39,8 @@ public class PlayerMovementManager : MonoBehaviour
        }
 
         // Calcola la nuova posizione del giocatore sulla circonferenza
-        float x = movementCircle.Radius * Mathf.Cos(currentAngle);
-        float z = movementCircle.Radius * Mathf.Sin(currentAngle);
+        float x = arena.Radius * Mathf.Cos(currentAngle);
+        float z = arena.Radius * Mathf.Sin(currentAngle);
 
         // Applica la nuova posizione al giocatore
         playerTransform.position = new Vector3(x, playerTransform.position.y, z);

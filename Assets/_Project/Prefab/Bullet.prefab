@@ -188,6 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   lifeTime: 5
+  equilibriumAlteration: 0.1
 --- !u!1 &5792971517053481906
 GameObject:
   m_ObjectHideFlags: 0

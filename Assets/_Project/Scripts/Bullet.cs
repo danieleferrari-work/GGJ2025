@@ -5,6 +5,9 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] float lifeTime;
+    [SerializeField] float equilibriumAlteration;
+
+    public float EquilibriumAlteration => equilibriumAlteration;
 
 
     void Awake()
