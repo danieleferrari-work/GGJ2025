@@ -24,9 +24,4 @@ public class GameManager : Singleton<GameManager>
     {
         SceneManager.LoadScene("MainMenu");
     }
-
-    public void GameOver(Player loser)
-    {
-        OnGameOver?.Invoke(loser);
-    }
 }

@@ -3,7 +3,6 @@ using UnityEngine;
 public class Arena : MonoBehaviour
 {
     [SerializeField] EquilibriumManager equilibriumManager;
-    [SerializeField] float equilibriumChangeSpeed;
     [SerializeField] float radius;
     public float Radius => radius;
 
@@ -25,8 +24,8 @@ public class Arena : MonoBehaviour
         float targetSecondAngle = Mathf.Atan2(secondRadiusPosition.z - transform.position.z, secondRadiusPosition.x - transform.position.x);
 
         // Aggiorna gli angoli gradualmente
-        firstAngle = Mathf.LerpAngle(firstAngle, targetFirstAngle, equilibriumChangeSpeed * Time.deltaTime);
-        secondAngle = Mathf.LerpAngle(secondAngle, targetSecondAngle, equilibriumChangeSpeed * Time.deltaTime);
+        firstAngle = Mathf.LerpAngle(firstAngle, targetFirstAngle, equilibriumManager.equilibriumChangeSpeed * Time.deltaTime);
+        secondAngle = Mathf.LerpAngle(secondAngle, targetSecondAngle, equilibriumManager.equilibriumChangeSpeed * Time.deltaTime);
     }
 
     public float ClampPlayerAngle(int playerIndex, float candidateAngle)

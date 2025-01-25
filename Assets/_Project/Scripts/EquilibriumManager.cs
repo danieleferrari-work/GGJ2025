@@ -5,9 +5,10 @@ public class EquilibriumManager : MonoBehaviour
 {
     [Range(0.1f, 0.9f)]
     public float equilibrium;
-    [SerializeField] float equilibriumChangeOnHit;
-    [SerializeField] float equilibriumRechargeSpeed;
+    [SerializeField] float equilibriumAlterationOnHit;
+    [SerializeField] float equilibriumRecharcgeTick;
     [SerializeField] float equilibriumRechargeDelay;
+    public float equilibriumChangeSpeed;
 
     void Start()
     {
@@ -30,7 +31,7 @@ public class EquilibriumManager : MonoBehaviour
 
     public void AlterEquilibriumOnHit(int playerIndex, int life)
     {
-        AlterEquilibrium(playerIndex, equilibriumChangeOnHit);
+        AlterEquilibrium(playerIndex, equilibriumAlterationOnHit);
     }
 
     public void AlterEquilibriumOnShoot(int playerIndex, Bullet bullet)
@@ -42,7 +43,17 @@ public class EquilibriumManager : MonoBehaviour
     {
         while (true)
         {
-            equilibrium = Mathf.Lerp(equilibrium, 0.5f, equilibriumRechargeSpeed);
+            if (equilibrium - 0.5f > 0.03f)
+            {
+                if (equilibrium < 0.5f)
+                {
+                    equilibrium += equilibriumRecharcgeTick;
+                }
+                else
+                {
+                    equilibrium -= equilibriumRecharcgeTick;
+                }
+            }
             yield return new WaitForSeconds(equilibriumRechargeDelay);
         }
     }

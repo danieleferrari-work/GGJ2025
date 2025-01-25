@@ -8,20 +8,17 @@ public class UIGameOver : MonoBehaviour
     void Awake()
     {
         gameObject.SetActive(false);
-        GameManager.instance.OnGameOver += ShowGameOverScreen;
     }
 
     void OnDestroy()
     {
         Time.timeScale = 1f;
-        GameManager.instance.OnGameOver -= ShowGameOverScreen;
     }
 
-    private void ShowGameOverScreen(Player loser)
+    public void ShowGameOverScreen()
     {
         gameObject.SetActive(true);
         Time.timeScale = 0f;
-        UpdateWinnerText(PlayersManager.instance.GetOpponent(loser.Index).PlayerName);
     }
 
     public void UpdateWinnerText(string winnerName)

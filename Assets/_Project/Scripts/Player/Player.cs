@@ -33,7 +33,8 @@ public class Player : MonoBehaviour
         
         if (life <= 0)
         {
-            GameManager.instance.GameOver(this);
+            RoundsManager.instance.SetRoundLoser(index);
+            RoundsManager.instance.NextRound();
         }
     }
 }
