@@ -7,12 +7,26 @@ public class Arena : MonoBehaviour
     public float Radius => radius;
 
     private float firstAngle;
+    private float targetFirstAngle;
+    private float targetSecondAngle;
     private float secondAngle;
     public float FirstAngle => firstAngle;
     public float SecondAngle => secondAngle;
 
+    void Start()
+    {
+        CalculatTargetAngles();
+        firstAngle = targetFirstAngle;
+        secondAngle = targetSecondAngle;
+    }
 
     void Update()
+    {
+        CalculatTargetAngles();
+        UpdateAngleLerping();
+    }
+
+    private void CalculatTargetAngles()
     {
         float angle = equilibriumManager.equilibrium * Mathf.PI; // Equilibrium va da 0 a 1, quindi moltiplichiamo per PI
 
@@ -20,10 +34,12 @@ public class Arena : MonoBehaviour
         var secondRadiusPosition = CircleUtils.GetPositionBasedOnAngle(transform.position, radius, -angle);
 
         // Calcola gli angoli dei raggi
-        float targetFirstAngle = Mathf.Atan2(firstRadiusPosition.z - transform.position.z, firstRadiusPosition.x - transform.position.x);
-        float targetSecondAngle = Mathf.Atan2(secondRadiusPosition.z - transform.position.z, secondRadiusPosition.x - transform.position.x);
+        targetFirstAngle = Mathf.Atan2(firstRadiusPosition.z - transform.position.z, firstRadiusPosition.x - transform.position.x);
+        targetSecondAngle = Mathf.Atan2(secondRadiusPosition.z - transform.position.z, secondRadiusPosition.x - transform.position.x);
+    }
 
-        // Aggiorna gli angoli gradualmente
+    private void UpdateAngleLerping()
+    {
         firstAngle = Mathf.LerpAngle(firstAngle, targetFirstAngle, equilibriumManager.equilibriumChangeSpeed * Time.deltaTime);
         secondAngle = Mathf.LerpAngle(secondAngle, targetSecondAngle, equilibriumManager.equilibriumChangeSpeed * Time.deltaTime);
     }
