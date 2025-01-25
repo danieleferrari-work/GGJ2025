@@ -22,15 +22,16 @@ public class OxygenRenderer : MonoBehaviour
         lineRenderer1.positionCount = density + 1;
         for (int i = 0; i <= density; i++)
         {
-            var rad = (float)i / density * ((arena.FirstAngle - arena.SecondAngle)/2);
             Vector3 position = Vector3.zero;
             if (index == 1)
             {
+                var rad = (float)i / density * ((arena.FirstAngle - arena.SecondAngle) / 2);
                 position = new Vector3(Mathf.Cos(rad), yPos, Mathf.Sin(rad)) * arena.Radius;
             }
 
-            if(index == 2)
+            if (index == 2)
             {
+                var rad = (float)i / density * ((Mathf.Deg2Rad * 360 - (arena.FirstAngle - arena.SecondAngle)) / 2);
                 position = new Vector3(-Mathf.Cos(rad), yPos, Mathf.Sin(rad)) * arena.Radius;
             }
 
@@ -40,15 +41,16 @@ public class OxygenRenderer : MonoBehaviour
         lineRenderer2.positionCount = density + 1;
         for (int i = 0; i <= density; i++)
         {
-            var rad = (float)i / density * ((arena.FirstAngle - arena.SecondAngle) / 2);
             Vector3 position = Vector3.zero;
             if (index == 1)
             {
+                var rad = (float)i / density * ((arena.FirstAngle - arena.SecondAngle) / 2);
                 position = new Vector3(Mathf.Cos(rad), yPos, -Mathf.Sin(rad)) * arena.Radius;
             }
 
             if (index == 2)
             {
+                var rad = (float)i / density * ((Mathf.Deg2Rad * 360 - (arena.FirstAngle - arena.SecondAngle)) / 2);
                 position = new Vector3(-Mathf.Cos(rad), yPos, -Mathf.Sin(rad)) * arena.Radius;
             }
             lineRenderer2.SetPosition(i, position);
