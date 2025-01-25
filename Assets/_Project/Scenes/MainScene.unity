@@ -677,6 +677,7 @@ MonoBehaviour:
   fullScreen: 1
   player1: {fileID: 1927092538}
   player2: {fileID: 8017358}
+  equilibrium: 0.5
 --- !u!1 &524852190
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,7 +1362,7 @@ GameObject:
   - component: {fileID: 1650682961}
   - component: {fileID: 1650682962}
   m_Layer: 0
-  m_Name: Movement Circle
+  m_Name: Arena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1394,6 +1395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e2a9ae448b846743af602cdff4f352d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 514091543}
   radius: 10
 --- !u!1 &1793395782
 GameObject:
