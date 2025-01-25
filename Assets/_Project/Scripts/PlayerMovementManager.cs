@@ -1,22 +1,19 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovementManager : MonoBehaviour
 {
-    [SerializeField] Transform playerTransform;
-
+    [SerializeField] private Transform playerTransform;
     private InputManager inputManager;
-    private GameManager gameManager;
     private Arena arena;
-    private float currentAngle = 0;
+    private GameManager gameManager;
     private int playerIndex;
     private float speed;
+    private float currentAngle;
 
     public void Init(int playerIndex, float speed)
     {
         this.playerIndex = playerIndex;
         this.speed = speed;
-
         currentAngle = playerIndex == 1 ? 0 : Mathf.PI;
     }
 
@@ -29,23 +26,36 @@ public class PlayerMovementManager : MonoBehaviour
 
     void Update()
     {
-       if (inputManager.GetPlayerMoveLeft(playerIndex))
-       {
-           currentAngle -= speed * Time.deltaTime;
-       }
-       else if (inputManager.GetPlayerMoveRight(playerIndex))
-       {
-           currentAngle += speed * Time.deltaTime;
-       }
+        HandleMovement();
+        UpdatePlayerPosition();
+        LookAtOpponent();
+    }
 
-        // Calcola la nuova posizione del giocatore sulla circonferenza
+    private void HandleMovement()
+    {
+        float targetAngle = currentAngle;
+        if (inputManager.GetPlayerMoveLeft(playerIndex))
+        {
+            targetAngle -= speed * Time.deltaTime;
+        }
+        else if (inputManager.GetPlayerMoveRight(playerIndex))
+        {
+            targetAngle += speed * Time.deltaTime;
+        }
+
+        currentAngle = arena.ClampPlayerAngle(playerIndex, targetAngle);
+    }
+
+    private void UpdatePlayerPosition()
+    {
         float x = arena.Radius * Mathf.Cos(currentAngle);
         float z = arena.Radius * Mathf.Sin(currentAngle);
+        var targetPosition = new Vector3(x, playerTransform.position.y, z);
+        playerTransform.position = targetPosition;
+    }
 
-        // Applica la nuova posizione al giocatore
-        playerTransform.position = new Vector3(x, playerTransform.position.y, z);
-
-        // Guarda verso l'avversario
+    private void LookAtOpponent()
+    {
         playerTransform.LookAt(gameManager.GetOpponent(playerIndex).transform);
     }
 }

@@ -842,6 +842,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2
       objectReference: {fileID: 0}
+    - target: {fileID: 5908424012734283084, guid: 43f6e136fac47fd4eaef7a61dd0a93a4, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3ea5d91ffbadda5429b5935f31268104, type: 2}
     - target: {fileID: 7504501471764796225, guid: 43f6e136fac47fd4eaef7a61dd0a93a4, type: 3}
       propertyPath: index
       value: 2
@@ -1544,6 +1548,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player1
       objectReference: {fileID: 0}
+    - target: {fileID: 5908424012734283084, guid: 43f6e136fac47fd4eaef7a61dd0a93a4, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e834a08f505478a4bb9e32d9887ed1ea, type: 2}
     - target: {fileID: 7504501471764796225, guid: 43f6e136fac47fd4eaef7a61dd0a93a4, type: 3}
       propertyPath: index
       value: 1
