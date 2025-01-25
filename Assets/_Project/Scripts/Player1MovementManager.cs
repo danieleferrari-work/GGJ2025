@@ -6,16 +6,13 @@ public class Player1MovementManager : MonoBehaviour
 
     private InputManager inputManager;
     private MovementCircle movementCircle;
-    private float movementRadius;
     private float currentAngle = 0;
 
 
     void Awake()
     {
         inputManager = FindFirstObjectByType<InputManager>();
-
         movementCircle = FindFirstObjectByType<MovementCircle>();
-        movementRadius = movementCircle.Radius;
     }
 
     void Update()
@@ -33,8 +30,8 @@ public class Player1MovementManager : MonoBehaviour
        }
 
         // Calcola la nuova posizione del giocatore sulla circonferenza
-        float x = movementRadius * Mathf.Cos(currentAngle);
-        float z = movementRadius * Mathf.Sin(currentAngle);
+        float x = movementCircle.Radius * Mathf.Cos(currentAngle);
+        float z = movementCircle.Radius * Mathf.Sin(currentAngle);
 
         // Applica la nuova posizione al giocatore
         transform.position = new Vector3(x, transform.position.y, z);
