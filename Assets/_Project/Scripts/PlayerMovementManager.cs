@@ -1,13 +1,18 @@
 using UnityEngine;
 
-public class Player1MovementManager : MonoBehaviour
+public class PlayerMovementManager : MonoBehaviour
 {
-    [SerializeField] float speed;
+    [SerializeField] Transform playerTransform;
 
     private InputManager inputManager;
     private MovementCircle movementCircle;
     private float currentAngle = 0;
+    private float speed;
 
+    public void Init(float speed)
+    {
+        this.speed = speed;
+    }
 
     void Awake()
     {
@@ -17,15 +22,13 @@ public class Player1MovementManager : MonoBehaviour
 
     void Update()
     {
-       if (inputManager.MovePlayer1Left)
+       if (inputManager.Player1MoveLeft)
        {
-           Debug.Log("MovePlayer1Left");
            currentAngle -= speed * Time.deltaTime;
        }
 
-       if (inputManager.MovePlayer1Right)
+       if (inputManager.Player1MoveRight)
        {
-           Debug.Log("MovePlayer1Right");
            currentAngle += speed * Time.deltaTime;
        }
 
@@ -34,6 +37,6 @@ public class Player1MovementManager : MonoBehaviour
         float z = movementCircle.Radius * Mathf.Sin(currentAngle);
 
         // Applica la nuova posizione al giocatore
-        transform.position = new Vector3(x, transform.position.y, z);
+        playerTransform.position = new Vector3(x, playerTransform.position.y, z);
     }
 }

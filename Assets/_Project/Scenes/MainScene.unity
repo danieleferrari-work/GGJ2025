@@ -1270,8 +1270,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1793395783}
-  - component: {fileID: 1793395784}
   - component: {fileID: 1793395785}
+  - component: {fileID: 1793395784}
   m_Layer: 0
   m_Name: Input Manager
   m_TagString: Untagged
@@ -1306,8 +1306,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518d6766806cffd4981daf8f24501a6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovePlayer1Left: 0
-  MovePlayer1Right: 0
+  Player1MoveLeft: 0
+  Player1MoveRight: 0
+  Player1Attack: 0
 --- !u!114 &1793395785
 MonoBehaviour:
   m_ObjectHideFlags: 0

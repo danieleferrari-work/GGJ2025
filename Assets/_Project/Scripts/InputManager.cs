@@ -3,8 +3,9 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    public bool MovePlayer1Left;
-    public bool MovePlayer1Right;
+    public bool Player1MoveLeft;
+    public bool Player1MoveRight;
+    public bool Player1Attack;
 
     public PlayerInput PlayerInput 
         => GetComponent<PlayerInput>();
@@ -14,7 +15,8 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        MovePlayer1Left = FindAction("MovePlayer1Left").IsPressed();
-        MovePlayer1Right = FindAction("MovePlayer1Right").IsPressed();
+        Player1MoveLeft = FindAction("Player1MoveLeft").IsPressed();
+        Player1MoveRight = FindAction("Player1MoveRight").IsPressed();
+        Player1Attack = FindAction("Player1Attack").IsPressed();
     }
 }
