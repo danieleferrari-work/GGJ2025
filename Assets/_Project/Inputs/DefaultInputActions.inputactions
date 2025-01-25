@@ -24,18 +24,27 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Player2Attack",
+                    "name": "Player1MoveLeft",
                     "type": "Button",
-                    "id": "18509496-e22b-4aaa-a0b3-79ce59e731ec",
+                    "id": "3c85eabc-c32e-4923-b302-0875ed0051e5",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Player1MoveLeft",
+                    "name": "Player1MoveRight",
                     "type": "Button",
-                    "id": "3c85eabc-c32e-4923-b302-0875ed0051e5",
+                    "id": "02bbc63e-c526-4d2e-aef8-8d1d6ffe757e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Player2Attack",
+                    "type": "Button",
+                    "id": "18509496-e22b-4aaa-a0b3-79ce59e731ec",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -54,15 +63,6 @@
                     "name": "Player2MoveRight",
                     "type": "Button",
                     "id": "400ed0a9-14e1-4e8d-af1b-d8eeeabc6f8c",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Player1MoveRight",
-                    "type": "Button",
-                    "id": "02bbc63e-c526-4d2e-aef8-8d1d6ffe757e",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
