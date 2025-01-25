@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public void Awake()
     {
         GetComponentInChildren<PlayerMovementManager>().Init(index, movementSpeed);
+        GetComponentInChildren<PlayerAnimations>().Init(index);
         GetComponentInChildren<PlayerAttackManager>().Init(index, attackDelay);
     }
 
