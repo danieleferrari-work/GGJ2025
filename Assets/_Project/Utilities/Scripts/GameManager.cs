@@ -11,11 +11,13 @@ public class GameManager : Singleton<GameManager>
     public float sfxVolume = 1;
     public float uiVolume = 1;
     public bool fullScreen = true;
+
     public Player player1;
     public Player player2;
 
     [Range(0.1f, 0.9f)]
     public float equilibrium;
+    [SerializeField] float equilibriumChangeOnHit;
 
 
     public Player GetOpponent(int playerIndex)
@@ -25,5 +27,10 @@ public class GameManager : Singleton<GameManager>
     {
         equilibrium = playerIndex == 1 ? equilibrium - value : equilibrium + value;
         equilibrium = Mathf.Clamp(equilibrium, 0.1f, 0.9f);
+    }
+
+    public void AlterEquilibriumOnHit(int playerIndex)
+    {
+        AlterEquilibrium(playerIndex, equilibriumChangeOnHit);
     }
 }

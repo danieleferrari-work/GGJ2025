@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
         life -= damage;
 
         OnLifeChange?.Invoke(index, life);
+        GameManager.instance.AlterEquilibriumOnHit(index);
         
         if (life <= 0)
         {

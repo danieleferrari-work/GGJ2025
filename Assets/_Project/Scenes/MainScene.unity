@@ -827,6 +827,7 @@ MonoBehaviour:
   player1: {fileID: 1927092538}
   player2: {fileID: 8017358}
   equilibrium: 0.5
+  equilibriumChangeOnHit: 0.3
 --- !u!1 &514523086
 GameObject:
   m_ObjectHideFlags: 0
