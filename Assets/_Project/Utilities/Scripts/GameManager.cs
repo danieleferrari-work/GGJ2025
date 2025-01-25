@@ -23,7 +23,7 @@ public class GameManager : Singleton<GameManager>
 
     public void AlterEquilibrium(int playerIndex, float value)
     {
-        equilibrium = playerIndex == 1 ? equilibrium + value : equilibrium - value;
+        equilibrium = playerIndex == 1 ? equilibrium - value : equilibrium + value;
         equilibrium = Mathf.Clamp(equilibrium, 0, 1);
     }
 }
