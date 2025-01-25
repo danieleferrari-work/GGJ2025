@@ -14,7 +14,7 @@ public class GameManager : Singleton<GameManager>
     public Player player1;
     public Player player2;
 
-    [Range(0, 1)]
+    [Range(0.1f, 0.9f)]
     public float equilibrium;
 
 
@@ -24,6 +24,6 @@ public class GameManager : Singleton<GameManager>
     public void AlterEquilibrium(int playerIndex, float value)
     {
         equilibrium = playerIndex == 1 ? equilibrium - value : equilibrium + value;
-        equilibrium = Mathf.Clamp(equilibrium, 0, 1);
+        equilibrium = Mathf.Clamp(equilibrium, 0.1f, 0.9f);
     }
 }

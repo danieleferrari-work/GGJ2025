@@ -3,12 +3,11 @@ using UnityEngine;
 public class Arena : MonoBehaviour
 {
     [SerializeField] GameManager gameManager;
+    [SerializeField] float equilibriumChangeSpeed;
     [SerializeField] float radius;
     public float Radius => radius;
 
-    private Vector3 firstRadiusPosition;
     private float firstAngle;
-    private Vector3 secondRadiusPosition;
     private float secondAngle;
 
 
@@ -16,26 +15,26 @@ public class Arena : MonoBehaviour
     {
         float angle = gameManager.equilibrium * Mathf.PI; // Equilibrium va da 0 a 1, quindi moltiplichiamo per PI
 
-        firstRadiusPosition = CalculateFirstRadiusPosition(angle);
-        secondRadiusPosition = CalculateSecondRadiusPosition(angle);
+        var firstRadiusPosition = CalculateFirstRadiusPosition(angle);
+        var secondRadiusPosition = CalculateSecondRadiusPosition(angle);
 
         // Calcola gli angoli dei raggi
-        firstAngle = Mathf.Atan2(firstRadiusPosition.z - transform.position.z, firstRadiusPosition.x - transform.position.x);
-        secondAngle = Mathf.Atan2(secondRadiusPosition.z - transform.position.z, secondRadiusPosition.x - transform.position.x);
+        float targetFirstAngle = Mathf.Atan2(firstRadiusPosition.z - transform.position.z, firstRadiusPosition.x - transform.position.x);
+        float targetSecondAngle = Mathf.Atan2(secondRadiusPosition.z - transform.position.z, secondRadiusPosition.x - transform.position.x);
+
+        // Aggiorna gli angoli gradualmente
+        firstAngle = Mathf.LerpAngle(firstAngle, targetFirstAngle, equilibriumChangeSpeed * Time.deltaTime);
+        secondAngle = Mathf.LerpAngle(secondAngle, targetSecondAngle, equilibriumChangeSpeed * Time.deltaTime);
     }
 
     public float ClampPlayerAngle(int playerIndex, float candidateAngle)
     {
-        Debug.Log($"playerIndex = {playerIndex}, candidateAngle = {candidateAngle}");
-
         if (playerIndex == 1 && IsAngleBetween(candidateAngle, secondAngle, firstAngle))
         {
-            Debug.LogFormat("player 1 angle is ok={0}", candidateAngle);
             return candidateAngle;
         }
         else if (playerIndex == 2 && IsAngleBetween(candidateAngle, firstAngle, secondAngle))
         {
-            Debug.LogFormat("player 2 angle is ok={0}", candidateAngle);
             return candidateAngle;
         }
 
@@ -95,9 +94,15 @@ public class Arena : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, radius);
+        
+        // Calcola le nuove posizioni basate sugli angoli
+        Vector3 firstAnglePosition = new Vector3(Mathf.Cos(firstAngle) * radius, 0, Mathf.Sin(firstAngle) * radius) + transform.position;
+        Vector3 secondAnglePosition = new Vector3(Mathf.Cos(secondAngle) * radius, 0, Mathf.Sin(secondAngle) * radius) + transform.position;
+
+        // Disegna i Gizmos utilizzando le nuove posizioni
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, firstRadiusPosition);
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawLine(transform.position, secondRadiusPosition);
+        Gizmos.DrawLine(transform.position, firstAnglePosition);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, secondAnglePosition);
     }
 }
