@@ -15,6 +15,8 @@ public class PlayerMovementManager : MonoBehaviour
     {
         this.playerIndex = playerIndex;
         this.speed = speed;
+
+        currentAngle = playerIndex == 1 ? 0 : Mathf.PI;
     }
 
     void Awake()
