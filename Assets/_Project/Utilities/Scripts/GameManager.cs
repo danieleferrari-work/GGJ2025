@@ -10,4 +10,10 @@ public class GameManager : Singleton<GameManager>
     public float sfxVolume = 1;
     public float uiVolume = 1;
     public bool fullScreen = true;
+    public Player player1;
+    public Player player2;
+
+
+    public Player GetOpponent(int playerIndex)
+        => playerIndex == 1 ? player2 : player1;
 }

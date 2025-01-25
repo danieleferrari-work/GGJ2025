@@ -6,6 +6,7 @@ public class PlayerMovementManager : MonoBehaviour
     [SerializeField] Transform playerTransform;
 
     private InputManager inputManager;
+    private GameManager gameManager;
     private MovementCircle movementCircle;
     private float currentAngle = 0;
     private int playerIndex;
@@ -23,6 +24,7 @@ public class PlayerMovementManager : MonoBehaviour
     {
         inputManager = FindFirstObjectByType<InputManager>();
         movementCircle = FindFirstObjectByType<MovementCircle>();
+        gameManager = FindFirstObjectByType<GameManager>();
     }
 
     void Update()
@@ -43,5 +45,8 @@ public class PlayerMovementManager : MonoBehaviour
 
         // Applica la nuova posizione al giocatore
         playerTransform.position = new Vector3(x, playerTransform.position.y, z);
+
+        // Guarda verso l'avversario
+        playerTransform.LookAt(gameManager.GetOpponent(playerIndex).transform);
     }
 }
