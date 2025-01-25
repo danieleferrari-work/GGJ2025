@@ -228,7 +228,7 @@ MonoBehaviour:
   index: 0
   movementSpeed: 1
   attackDelay: 1
-  life: 3
+  life: 10
 --- !u!1 &4303567612874446162
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField] float movementSpeed;
     [SerializeField] float attackDelay;
     [SerializeField] int life;
+
+    public static UnityAction<int, int> OnLifeChange;
 
 
     public void Awake()
@@ -19,6 +22,9 @@ public class Player : MonoBehaviour
     {
         Debug.Log($"player took damage {damage}");
         life -= damage;
+
+        OnLifeChange?.Invoke(index, life);
+        
         if (life <= 0)
         {
             Destroy(gameObject);
