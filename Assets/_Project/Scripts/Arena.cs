@@ -15,8 +15,8 @@ public class Arena : MonoBehaviour
     {
         float angle = gameManager.equilibrium * Mathf.PI; // Equilibrium va da 0 a 1, quindi moltiplichiamo per PI
 
-        var firstRadiusPosition = CalculateFirstRadiusPosition(angle);
-        var secondRadiusPosition = CalculateSecondRadiusPosition(angle);
+        var firstRadiusPosition = CircleUtils.GetPositionBasedOnAngle(transform.position, radius, angle);
+        var secondRadiusPosition = CircleUtils.GetPositionBasedOnAngle(transform.position, radius, -angle);
 
         // Calcola gli angoli dei raggi
         float targetFirstAngle = Mathf.Atan2(firstRadiusPosition.z - transform.position.z, firstRadiusPosition.x - transform.position.x);
@@ -72,32 +72,14 @@ public class Arena : MonoBehaviour
         return start <= angle || angle <= end;
     }
 
-
-    private Vector3 CalculateSecondRadiusPosition(float angle)
-    {
-        float x = radius * Mathf.Cos(-angle);
-        float z = radius * Mathf.Sin(-angle);
-        var secondRadiusPosition = new Vector3(x, 0, z) + transform.position;
-        return secondRadiusPosition;
-    }
-
-    private Vector3 CalculateFirstRadiusPosition(float angle)
-    {
-        float x = radius * Mathf.Cos(angle);
-        float z = radius * Mathf.Sin(angle);
-        var firstRadiusPosition = new Vector3(x, 0, z) + transform.position;
-        return firstRadiusPosition;
-    }
-
-
     void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, radius);
-        
+
         // Calcola le nuove posizioni basate sugli angoli
         Vector3 firstAnglePosition = CircleUtils.GetPositionBasedOnAngle(transform.position, radius, firstAngle);
-        Vector3 secondAnglePosition =  CircleUtils.GetPositionBasedOnAngle(transform.position, radius, secondAngle);
+        Vector3 secondAnglePosition = CircleUtils.GetPositionBasedOnAngle(transform.position, radius, secondAngle);
 
         // Disegna i Gizmos utilizzando le nuove posizioni
         Gizmos.color = Color.red;
