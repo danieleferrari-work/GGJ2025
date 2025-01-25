@@ -657,9 +657,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equilibrium: 0.5
-  equilibriumAlterationOnHit: 0.3
-  equilibriumRecharcgeTick: 0.1
   equilibriumRechargeDelay: 1
+  equilibriumRechargeTick: 0.1
   equilibriumChangeSpeed: 0.5
 --- !u!1 &514091541
 GameObject:

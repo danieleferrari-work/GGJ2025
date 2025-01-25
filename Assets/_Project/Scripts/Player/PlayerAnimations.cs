@@ -22,13 +22,13 @@ public class PlayerAnimations : MonoBehaviour
     private void Update()
     {
         int runningDir = 0;
-        if(inputManager.GetPlayerMoveLeft(index))
+        if (inputManager.GetPlayerMoveLeft(index))
             runningDir = -1;
-        if(inputManager.GetPlayerMoveRight(index))
+        if (inputManager.GetPlayerMoveRight(index))
             runningDir = 1;
 
-        if(runningDir != 0)
-            player.transform.localScale = new Vector3(runningDir, 1, 1);
+        // if (runningDir != 0)
+        //     player.transform.localScale = new Vector3(runningDir, 1, 1);
 
         animator.SetBool("isRunning", runningDir != 0);
 

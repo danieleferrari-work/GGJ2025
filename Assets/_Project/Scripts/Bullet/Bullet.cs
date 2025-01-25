@@ -6,9 +6,15 @@ public class Bullet : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] int damage;
     [SerializeField] float lifeTime;
-    [SerializeField] float equilibriumAlteration;
 
-    public float EquilibriumAlteration => equilibriumAlteration;
+    [Tooltip("Quanto equilibrio perde il giocatore che viene colpito")]
+    [SerializeField] float equilibriumLostOnHit;
+    [Tooltip("Quanto equilibrio perde il giocatore che spara")]
+    [SerializeField] float equilibriumLostOnShoot;
+
+    public float EquilibriumLostOnHit => equilibriumLostOnHit;
+    public float EquilibriumLostOnShoot => equilibriumLostOnShoot;
+
     public int Damage => damage;
 
     void Awake()

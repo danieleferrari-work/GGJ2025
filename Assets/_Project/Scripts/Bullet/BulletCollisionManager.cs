@@ -24,7 +24,7 @@ public class BulletCollisionManager : MonoBehaviour
         PlayerCollisionManager playerCollisionManager = other.GetComponent<PlayerCollisionManager>();
         if (playerCollisionManager != null)
         {
-            playerCollisionManager.OnBulletCollision(bullet.Damage);
+            playerCollisionManager.OnBulletCollision(bullet);
             bullet.StopAllCoroutines();
             Destroy(bullet.gameObject);
         }

@@ -9,8 +9,8 @@ public class PlayerCollisionManager : MonoBehaviour
         player = GetComponentInParent<Player>();
     }
 
-    internal void OnBulletCollision(int damage)
+    internal void OnBulletCollision(Bullet bullet)
     {
-        player.TakeDamage(damage);
+        player.Hit(bullet);
     }
 }

@@ -5,21 +5,25 @@ public class EquilibriumManager : MonoBehaviour
 {
     [Range(0.1f, 0.9f)]
     public float equilibrium;
-    [SerializeField] float equilibriumAlterationOnHit;
-    [SerializeField] float equilibriumRecharcgeTick;
+    
+    [Tooltip("Ogni quanti secondi si ricarica l'equilibrio")]
     [SerializeField] float equilibriumRechargeDelay;
+
+    [Tooltip("Quanto equilibrio viene ristabilito ogni equilibriumRechargeDelay secondi")]
+    [SerializeField] float equilibriumRechargeTick;
+
     public float equilibriumChangeSpeed;
 
     void Start()
     {
         StartCoroutine(EquilibrateEquilibrium());
-        Player.OnLifeChange += AlterEquilibriumOnHit;
+        Player.OnHit += AlterEquilibriumOnHit;
         Player.OnShoot += AlterEquilibriumOnShoot;
     }
 
     void OnDestroy()
     {
-        Player.OnLifeChange -= AlterEquilibriumOnHit;
+        Player.OnHit -= AlterEquilibriumOnHit;
         Player.OnShoot -= AlterEquilibriumOnShoot;
     }
 
@@ -29,14 +33,14 @@ public class EquilibriumManager : MonoBehaviour
         equilibrium = Mathf.Clamp(equilibrium, 0.1f, 0.9f);
     }
 
-    public void AlterEquilibriumOnHit(int playerIndex, int life)
+    public void AlterEquilibriumOnHit(int playerIndex, Bullet bullet)
     {
-        AlterEquilibrium(playerIndex, equilibriumAlterationOnHit);
+        AlterEquilibrium(playerIndex, bullet.EquilibriumLostOnHit);
     }
 
     public void AlterEquilibriumOnShoot(int playerIndex, Bullet bullet)
     {
-        AlterEquilibrium(playerIndex, bullet.EquilibriumAlteration);
+        AlterEquilibrium(playerIndex, bullet.EquilibriumLostOnShoot);
     }
 
     private IEnumerator EquilibrateEquilibrium()
@@ -47,11 +51,11 @@ public class EquilibriumManager : MonoBehaviour
             {
                 if (equilibrium < 0.5f)
                 {
-                    equilibrium += equilibriumRecharcgeTick;
+                    equilibrium += equilibriumRechargeTick;
                 }
                 else
                 {
-                    equilibrium -= equilibriumRecharcgeTick;
+                    equilibrium -= equilibriumRechargeTick;
                 }
             }
             yield return new WaitForSeconds(equilibriumRechargeDelay);

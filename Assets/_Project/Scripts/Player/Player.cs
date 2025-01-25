@@ -10,8 +10,9 @@ public class Player : MonoBehaviour
     [SerializeField] float attackDelay;
     [SerializeField] int life;
 
-    public static UnityAction<int, int> OnLifeChange;
     public static UnityAction<int, Bullet> OnShoot;
+    public static UnityAction<int, Bullet> OnHit;
+    public static UnityAction<int, int> OnLifeChange;
     public string PlayerName => playerName;
     public int Index => index;
 
@@ -24,11 +25,12 @@ public class Player : MonoBehaviour
         GetComponentInChildren<OxygenRenderer>().Init(index);
     }
 
-    public void TakeDamage(int damage)
+    public void Hit(Bullet bullet)
     {
-        Debug.Log($"player took damage {damage}");
-        life -= damage;
+        Debug.Log($"player took damage {bullet.Damage}");
+        life -= bullet.Damage;
 
+        OnHit?.Invoke(index, bullet);
         OnLifeChange?.Invoke(index, life);
         
         if (life <= 0)
