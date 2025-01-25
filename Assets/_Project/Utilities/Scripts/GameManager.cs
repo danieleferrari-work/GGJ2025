@@ -1,3 +1,4 @@
+using System.Collections;
 using BaseTemplate;
 using UnityEngine;
 
@@ -18,7 +19,14 @@ public class GameManager : Singleton<GameManager>
     [Range(0.1f, 0.9f)]
     public float equilibrium;
     [SerializeField] float equilibriumChangeOnHit;
+    [SerializeField] float equilibriumRechargeSpeed;
+    [SerializeField] float equilibriumRechargeDelay;
 
+
+    void Start()
+    {
+        StartCoroutine(EquilibrateEquilibrium());
+    }
 
     public Player GetOpponent(int playerIndex)
         => playerIndex == 1 ? player2 : player1;
@@ -32,5 +40,14 @@ public class GameManager : Singleton<GameManager>
     public void AlterEquilibriumOnHit(int playerIndex)
     {
         AlterEquilibrium(playerIndex, equilibriumChangeOnHit);
+    }
+
+    private IEnumerator EquilibrateEquilibrium()
+    {
+        while (true)
+        {
+            equilibrium = Mathf.Lerp(equilibrium, 0.5f, equilibriumRechargeSpeed);
+            yield return new WaitForSeconds(equilibriumRechargeDelay);
+        }
     }
 }

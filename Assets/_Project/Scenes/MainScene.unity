@@ -828,6 +828,8 @@ MonoBehaviour:
   player2: {fileID: 8017358}
   equilibrium: 0.5
   equilibriumChangeOnHit: 0.3
+  equilibriumRechargeSpeed: 0.1
+  equilibriumRechargeDelay: 0.5
 --- !u!1 &514523086
 GameObject:
   m_ObjectHideFlags: 0
