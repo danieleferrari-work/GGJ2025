@@ -4,11 +4,12 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] float speed;
+    [SerializeField] int damage;
     [SerializeField] float lifeTime;
     [SerializeField] float equilibriumAlteration;
 
     public float EquilibriumAlteration => equilibriumAlteration;
-
+    public int Damage => damage;
 
     void Awake()
     {
