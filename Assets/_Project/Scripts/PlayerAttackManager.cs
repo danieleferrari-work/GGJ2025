@@ -7,11 +7,13 @@ public class PlayerAttackManager : MonoBehaviour
     [SerializeField] Transform bulletSpawnPoint;
 
     private InputManager inputManager;
+    private int playerIndex;
     private float attackDelay;
     private float timeSinceLastAttack;
 
-    public void Init(float delay)
+    public void Init(int playerIndex, float delay)
     {
+        this.playerIndex = playerIndex;
         this.attackDelay = delay;
         this.timeSinceLastAttack = delay;
     }
@@ -25,9 +27,8 @@ public class PlayerAttackManager : MonoBehaviour
     {
         timeSinceLastAttack += Time.deltaTime;
 
-        if (inputManager.Player1Attack && timeSinceLastAttack >= attackDelay)
+        if (inputManager.GetPlayerAttack(playerIndex) && timeSinceLastAttack >= attackDelay)
         {
-            Debug.Log("Player1Attack");
             Instantiate(bullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
             timeSinceLastAttack = 0f;
         }

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovementManager : MonoBehaviour
@@ -7,10 +8,12 @@ public class PlayerMovementManager : MonoBehaviour
     private InputManager inputManager;
     private MovementCircle movementCircle;
     private float currentAngle = 0;
+    private int playerIndex;
     private float speed;
 
-    public void Init(float speed)
+    public void Init(int playerIndex, float speed)
     {
+        this.playerIndex = playerIndex;
         this.speed = speed;
     }
 
@@ -22,12 +25,12 @@ public class PlayerMovementManager : MonoBehaviour
 
     void Update()
     {
-       if (inputManager.Player1MoveLeft)
+       if (inputManager.GetPlayerMoveLeft(playerIndex))
        {
            currentAngle -= speed * Time.deltaTime;
        }
 
-       if (inputManager.Player1MoveRight)
+       if (inputManager.GetPlayerMoveRight(playerIndex))
        {
            currentAngle += speed * Time.deltaTime;
        }

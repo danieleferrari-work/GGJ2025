@@ -24,6 +24,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Player2Attack",
+                    "type": "Button",
+                    "id": "18509496-e22b-4aaa-a0b3-79ce59e731ec",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Player1MoveLeft",
                     "type": "Button",
                     "id": "3c85eabc-c32e-4923-b302-0875ed0051e5",
@@ -33,9 +42,27 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Player1MoveRight",
+                    "name": "Player2MoveLeft",
+                    "type": "Button",
+                    "id": "4c6ac8ab-4b87-4bd4-bb14-b0444b4c1e9b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Player2MoveRight",
                     "type": "Button",
                     "id": "400ed0a9-14e1-4e8d-af1b-d8eeeabc6f8c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Player1MoveRight",
+                    "type": "Button",
+                    "id": "02bbc63e-c526-4d2e-aef8-8d1d6ffe757e",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -89,6 +116,17 @@
                 },
                 {
                     "name": "",
+                    "id": "83fcc3fd-1e75-4b93-b9bb-1bebc6a8a452",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Player2Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "60852372-5daa-4287-a027-7c4adb68128d",
                     "path": "<Keyboard>/a",
                     "interactions": "",
@@ -100,7 +138,29 @@
                 },
                 {
                     "name": "",
+                    "id": "5a016fc3-0518-413c-938e-37606fdf2a8d",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Player2MoveLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "fc51c2eb-9baf-401f-8f01-6397e308bacb",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Player2MoveRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "17ab3f37-3513-4db2-bd6a-1dd5e1e185d1",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
