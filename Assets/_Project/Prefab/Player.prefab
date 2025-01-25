@@ -226,10 +226,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 722263d5ffb236149a32cf3770a12580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerName: 
   index: 0
   movementSpeed: 1
   attackDelay: 1
-  life: 10
+  life: 1
 --- !u!95 &8303724918942587720
 Animator:
   serializedVersion: 7

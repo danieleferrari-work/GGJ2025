@@ -1,6 +1,6 @@
-using System.Collections;
 using BaseTemplate;
-using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Save variables between scenes
@@ -13,41 +13,20 @@ public class GameManager : Singleton<GameManager>
     public float uiVolume = 1;
     public bool fullScreen = true;
 
-    public Player player1;
-    public Player player2;
+    public UnityAction<Player> OnGameOver;
 
-    [Range(0.1f, 0.9f)]
-    public float equilibrium;
-    [SerializeField] float equilibriumChangeOnHit;
-    [SerializeField] float equilibriumRechargeSpeed;
-    [SerializeField] float equilibriumRechargeDelay;
-
-
-    void Start()
+    public void RestartGame()
     {
-        StartCoroutine(EquilibrateEquilibrium());
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public Player GetOpponent(int playerIndex)
-        => playerIndex == 1 ? player2 : player1;
-
-    public void AlterEquilibrium(int playerIndex, float value)
+    public void LoadMainMenu()
     {
-        equilibrium = playerIndex == 1 ? equilibrium - value : equilibrium + value;
-        equilibrium = Mathf.Clamp(equilibrium, 0.1f, 0.9f);
+        SceneManager.LoadScene("MainMenu");
     }
 
-    public void AlterEquilibriumOnHit(int playerIndex)
+    public void GameOver(Player loser)
     {
-        AlterEquilibrium(playerIndex, equilibriumChangeOnHit);
-    }
-
-    private IEnumerator EquilibrateEquilibrium()
-    {
-        while (true)
-        {
-            equilibrium = Mathf.Lerp(equilibrium, 0.5f, equilibriumRechargeSpeed);
-            yield return new WaitForSeconds(equilibriumRechargeDelay);
-        }
+        OnGameOver?.Invoke(loser);
     }
 }

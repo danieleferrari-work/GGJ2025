@@ -32,7 +32,7 @@ public class PlayerAttackManager : MonoBehaviour
         {
             Instantiate(bullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
             timeSinceLastAttack = 0f;
-            gameManager.AlterEquilibrium(playerIndex, bullet.EquilibriumAlteration);
+            Player.OnShoot?.Invoke(playerIndex, bullet);
         }
     }
 }

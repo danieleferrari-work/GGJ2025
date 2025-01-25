@@ -12,6 +12,11 @@ public class UIManager : MonoBehaviour
         Player.OnLifeChange += OnLifeChange;
     }
 
+    void OnDestroy()
+    {
+        Player.OnLifeChange -= OnLifeChange;
+    }
+
     private void OnLifeChange(int playerIndex, int life)
     {
         if (playerIndex == 1)

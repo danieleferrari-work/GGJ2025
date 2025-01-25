@@ -3,6 +3,7 @@ using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] string playerName;
     [Range(1, 2)]
     [SerializeField] int index;
     [SerializeField] float movementSpeed;
@@ -10,6 +11,9 @@ public class Player : MonoBehaviour
     [SerializeField] int life;
 
     public static UnityAction<int, int> OnLifeChange;
+    public static UnityAction<int, Bullet> OnShoot;
+    public string PlayerName => playerName;
+    public int Index => index;
 
 
     public void Awake()
@@ -25,12 +29,10 @@ public class Player : MonoBehaviour
         life -= damage;
 
         OnLifeChange?.Invoke(index, life);
-        GameManager.instance.AlterEquilibriumOnHit(index);
         
         if (life <= 0)
         {
-            Destroy(gameObject);
-            // TODO Game Over
+            GameManager.instance.GameOver(this);
         }
     }
 }

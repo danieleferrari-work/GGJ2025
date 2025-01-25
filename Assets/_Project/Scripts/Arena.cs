@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Arena : MonoBehaviour
 {
-    [SerializeField] GameManager gameManager;
+    [SerializeField] EquilibriumManager equilibriumManager;
     [SerializeField] float equilibriumChangeSpeed;
     [SerializeField] float radius;
     public float Radius => radius;
@@ -13,7 +13,7 @@ public class Arena : MonoBehaviour
 
     void Update()
     {
-        float angle = gameManager.equilibrium * Mathf.PI; // Equilibrium va da 0 a 1, quindi moltiplichiamo per PI
+        float angle = equilibriumManager.equilibrium * Mathf.PI; // Equilibrium va da 0 a 1, quindi moltiplichiamo per PI
 
         var firstRadiusPosition = CircleUtils.GetPositionBasedOnAngle(transform.position, radius, angle);
         var secondRadiusPosition = CircleUtils.GetPositionBasedOnAngle(transform.position, radius, -angle);

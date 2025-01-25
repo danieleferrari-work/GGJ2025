@@ -5,7 +5,6 @@ public class PlayerMovementManager : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     private InputManager inputManager;
     private Arena arena;
-    private GameManager gameManager;
     private int playerIndex;
     private float speed;
     private float currentAngle;
@@ -21,7 +20,6 @@ public class PlayerMovementManager : MonoBehaviour
     {
         inputManager = FindFirstObjectByType<InputManager>();
         arena = FindFirstObjectByType<Arena>();
-        gameManager = FindFirstObjectByType<GameManager>();
     }
 
     void Update()
@@ -53,6 +51,6 @@ public class PlayerMovementManager : MonoBehaviour
 
     private void LookAtOpponent()
     {
-        playerTransform.LookAt(gameManager.GetOpponent(playerIndex).transform);
+        playerTransform.LookAt(PlayersManager.instance.GetOpponent(playerIndex).transform);
     }
 }
