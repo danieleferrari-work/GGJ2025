@@ -33,8 +33,7 @@ public class PlayerMovementManager : MonoBehaviour
        {
            currentAngle -= speed * Time.deltaTime;
        }
-
-       if (inputManager.GetPlayerMoveRight(playerIndex))
+       else if (inputManager.GetPlayerMoveRight(playerIndex))
        {
            currentAngle += speed * Time.deltaTime;
        }

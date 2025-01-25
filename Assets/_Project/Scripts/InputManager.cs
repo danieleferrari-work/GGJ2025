@@ -6,7 +6,7 @@ public class InputManager : MonoBehaviour
     private bool Player1MoveLeft;
     private bool Player1MoveRight;
     private bool Player1Attack;
-    
+
     private bool Player2MoveLeft;
     private bool Player2MoveRight;
     private bool Player2Attack;
@@ -14,15 +14,15 @@ public class InputManager : MonoBehaviour
 
     public bool GetPlayerMoveLeft(int playerIndex)
         => playerIndex == 1 ? Player1MoveLeft : Player2MoveLeft;
-        
+
     public bool GetPlayerMoveRight(int playerIndex)
         => playerIndex == 1 ? Player1MoveRight : Player2MoveRight;
-        
+
     public bool GetPlayerAttack(int playerIndex)
         => playerIndex == 1 ? Player1Attack : Player2Attack;
 
 
-    private PlayerInput PlayerInput 
+    private PlayerInput PlayerInput
         => GetComponent<PlayerInput>();
 
     private InputAction FindAction(string actionName)
