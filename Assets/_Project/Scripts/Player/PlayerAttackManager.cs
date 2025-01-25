@@ -4,6 +4,7 @@ public class PlayerAttackManager : MonoBehaviour
 {
     [SerializeField] Bullet bullet;
     [SerializeField] Transform bulletSpawnPoint;
+    [SerializeField] ParticleSystem muzzleFlash;
 
     private InputManager inputManager;
     private GameManager gameManager;
@@ -33,6 +34,7 @@ public class PlayerAttackManager : MonoBehaviour
             Instantiate(bullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
             timeSinceLastAttack = 0f;
             Player.OnShoot?.Invoke(playerIndex, bullet);
+            muzzleFlash.Play();
         }
     }
 }

@@ -183,9 +183,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f78ec64e272ccd40b16ebe30c5e56f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 8
   damage: 1
-  lifeTime: 5
+  lifeTime: 3
   equilibriumAlteration: 0.1
 --- !u!1 &5792971517053481906
 GameObject:

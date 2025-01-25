@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerAnimations : MonoBehaviour
 {
     [SerializeField] Animator animator;
+    [SerializeField] Player player;
 
     int index;
     InputManager inputManager;
@@ -20,9 +21,16 @@ public class PlayerAnimations : MonoBehaviour
 
     private void Update()
     {
-        bool isRunning = inputManager.GetPlayerMoveLeft(index) || inputManager.GetPlayerMoveRight(index);
-        Debug.Log(isRunning);
-        animator.SetBool("isRunning", isRunning);
+        int runningDir = 0;
+        if(inputManager.GetPlayerMoveLeft(index))
+            runningDir = -1;
+        if(inputManager.GetPlayerMoveRight(index))
+            runningDir = 1;
+
+        if(runningDir != 0)
+            player.transform.localScale = new Vector3(runningDir, 1, 1);
+
+        animator.SetBool("isRunning", runningDir != 0);
 
     }
 }

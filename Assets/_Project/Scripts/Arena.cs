@@ -9,6 +9,8 @@ public class Arena : MonoBehaviour
 
     private float firstAngle;
     private float secondAngle;
+    public float FirstAngle => firstAngle;
+    public float SecondAngle => secondAngle;
 
 
     void Update()
