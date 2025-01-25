@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5a987692c92025e48b94e33aa09720c1
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 178415
+  packageName: MK Toon - Stylized Shader
+  packageVersion: 3.1.2C
+  assetPath: Assets/_MK/MKToon/Examples/MK.Toon.Examples.asmdef
+  uploadId: 719237
