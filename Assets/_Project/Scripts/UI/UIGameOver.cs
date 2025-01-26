@@ -12,7 +12,8 @@ public class UIGameOver : MonoBehaviour
 
     void OnDestroy()
     {
-        GameManager.instance.gamePaused = false;
+        if (GameManager.instance != null)
+            GameManager.instance.gamePaused = false;
     }
 
     public void ShowGameOverScreen()
