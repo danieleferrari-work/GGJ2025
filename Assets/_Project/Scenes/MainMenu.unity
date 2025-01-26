@@ -2917,7 +2917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1976923495}
-  clip: {fileID: 32900000, guid: 355cc83af8a6a40aeab008dd5730322e, type: 3}
+  clip: {fileID: 32900000, guid: aa0dbffba84f74e9a9e54f2a40fed8a1, type: 3}
   startButton: {fileID: 113204033}
   anim: {fileID: 909011462}
   mainMenuManager: {fileID: 1183064703}
@@ -3705,6 +3705,7 @@ MonoBehaviour:
   fader: {fileID: 869646196}
   optionsMenu: {fileID: 1692272315}
   music: {fileID: 891142175}
+  howToPlayVideo: {fileID: 0}
   playButton: {fileID: 5540595385107840053}
   optionsButton: {fileID: 0}
   backFromOptionsButton: {fileID: 1897087718}
