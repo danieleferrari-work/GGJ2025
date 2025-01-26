@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,12 +15,10 @@ public class Player : MonoBehaviour
     [SerializeField] ParticleSystem onHitEffect;
     [SerializeField] Material onHitMaterial;
     [SerializeField] SkinnedMeshRenderer meshRenderer;
+    [SerializeField] List<GameObject> lifeIcons = new();
 
     public static UnityAction<int, Bullet> OnShoot;
     public static UnityAction<int, Bullet> OnHit;
-    public static UnityAction<int, int> OnLifeChange;
-    public string PlayerName => playerName;
-    public int Index => index;
     private int maxLife;
     private PlayerMovementManager playerMovementManager;
 
@@ -37,9 +36,8 @@ public class Player : MonoBehaviour
     public void Reset()
     {
         life = maxLife;
-        OnLifeChange?.Invoke(index, life);
-
         playerMovementManager.Reset();
+        ShowCurrentLife();
     }
 
     public void Hit(Bullet bullet)
@@ -50,15 +48,24 @@ public class Player : MonoBehaviour
         Debug.Log($"player took damage {bullet.Damage}");
         life -= bullet.Damage;
 
+        ShowCurrentLife();
+
         Instantiate(onHitEffect, bullet.transform.position, Quaternion.identity);
         StartCoroutine(ApplyOnHitMaterial());
 
         OnHit?.Invoke(index, bullet);
-        OnLifeChange?.Invoke(index, life);
 
         if (life <= 0)
         {
             RoundsManager.instance.SetRoundLoser(index);
+        }
+    }
+
+    private void ShowCurrentLife()
+    {
+        for (int i = 0; i < lifeIcons.Count; i++)
+        {
+            lifeIcons[i].SetActive(i < life);
         }
     }
 

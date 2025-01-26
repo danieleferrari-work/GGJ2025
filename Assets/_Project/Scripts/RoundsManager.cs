@@ -66,7 +66,8 @@ public class RoundsManager : Singleton<RoundsManager>
 
         if (currentRound > totalRounds)
         {
-            EndGame(player1Wins, player2Wins);
+            bool player1WinsGame = player1Score > player2Score;
+            EndGame(player1WinsGame, !player1WinsGame);
         }
         else
         {
