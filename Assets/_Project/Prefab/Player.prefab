@@ -422,7 +422,8 @@ MonoBehaviour:
   index: 0
   movementSpeed: 1
   attackDelay: 1
-  life: 1
+  life: 3
+  onHitEffect: {fileID: 198012786351023796, guid: 46e56f62e4ff899488d1b27766d1eb6d, type: 3}
 --- !u!95 &8303724918942587720
 Animator:
   serializedVersion: 7

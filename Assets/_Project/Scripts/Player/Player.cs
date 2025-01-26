@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] float movementSpeed;
     [SerializeField] float attackDelay;
     [SerializeField] int life;
+    [SerializeField] ParticleSystem onHitEffect;
 
     public static UnityAction<int, Bullet> OnShoot;
     public static UnityAction<int, Bullet> OnHit;
@@ -29,9 +30,11 @@ public class Player : MonoBehaviour
     {
         if (GameManager.instance.gamePaused)
             return;
-            
+
         Debug.Log($"player took damage {bullet.Damage}");
         life -= bullet.Damage;
+
+        Instantiate(onHitEffect, bullet.transform.position, Quaternion.identity);
 
         OnHit?.Invoke(index, bullet);
         OnLifeChange?.Invoke(index, life);
