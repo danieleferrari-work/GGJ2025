@@ -424,6 +424,8 @@ MonoBehaviour:
   attackDelay: 1
   life: 3
   onHitEffect: {fileID: 198012786351023796, guid: 46e56f62e4ff899488d1b27766d1eb6d, type: 3}
+  onHitMaterial: {fileID: 2100000, guid: 1aec73a1554fbff4181c787fd2fc468d, type: 2}
+  meshRenderer: {fileID: 1642940707332793994}
 --- !u!95 &8303724918942587720
 Animator:
   serializedVersion: 7
@@ -1718,6 +1720,11 @@ PrefabInstance:
       addedObject: {fileID: 5114131166535551872}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ada0fa56f959284d8451debc429e9e4, type: 3}
+--- !u!137 &1642940707332793994 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6736323901400159019, guid: 1ada0fa56f959284d8451debc429e9e4, type: 3}
+  m_PrefabInstance: {fileID: 5454104595615167905}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5492815150455640650 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1ada0fa56f959284d8451debc429e9e4, type: 3}

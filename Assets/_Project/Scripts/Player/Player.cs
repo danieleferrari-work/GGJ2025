@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,6 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField] float attackDelay;
     [SerializeField] int life;
     [SerializeField] ParticleSystem onHitEffect;
+    [SerializeField] Material onHitMaterial;
+    [SerializeField] SkinnedMeshRenderer meshRenderer;
 
     public static UnityAction<int, Bullet> OnShoot;
     public static UnityAction<int, Bullet> OnHit;
@@ -35,13 +40,30 @@ public class Player : MonoBehaviour
         life -= bullet.Damage;
 
         Instantiate(onHitEffect, bullet.transform.position, Quaternion.identity);
+        StartCoroutine(ApplyOnHitMaterial());
 
         OnHit?.Invoke(index, bullet);
         OnLifeChange?.Invoke(index, life);
-        
+
         if (life <= 0)
         {
             RoundsManager.instance.SetRoundLoser(index);
         }
+    }
+
+    private IEnumerator ApplyOnHitMaterial()
+    {
+        var defaultMaterials = meshRenderer.materials;
+        var materialsCount = meshRenderer.materials.Length;
+        var newMaterials = new Material[materialsCount];
+
+        for (int i = 0; i < materialsCount; i++)
+        {
+            newMaterials[i] = onHitMaterial;
+        }
+
+        meshRenderer.materials = newMaterials;
+        yield return new WaitForSeconds(0.2f);
+        meshRenderer.materials = defaultMaterials;
     }
 }
