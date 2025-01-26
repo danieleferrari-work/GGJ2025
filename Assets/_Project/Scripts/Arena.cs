@@ -15,6 +15,12 @@ public class Arena : MonoBehaviour
 
     void Start()
     {
+        ResetEquilibrium();
+    }
+
+    public void ResetEquilibrium()
+    {
+        equilibriumManager.equilibrium = 0.5f;
         CalculatTargetAngles();
         firstAngle = targetFirstAngle;
         secondAngle = targetSecondAngle;

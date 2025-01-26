@@ -422,7 +422,7 @@ MonoBehaviour:
   index: 0
   movementSpeed: 1
   attackDelay: 1
-  life: 100000
+  life: 1
 --- !u!95 &8303724918942587720
 Animator:
   serializedVersion: 7

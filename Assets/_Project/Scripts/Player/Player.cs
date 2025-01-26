@@ -27,6 +27,9 @@ public class Player : MonoBehaviour
 
     public void Hit(Bullet bullet)
     {
+        if (GameManager.instance.gamePaused)
+            return;
+            
         Debug.Log($"player took damage {bullet.Damage}");
         life -= bullet.Damage;
 
@@ -36,7 +39,6 @@ public class Player : MonoBehaviour
         if (life <= 0)
         {
             RoundsManager.instance.SetRoundLoser(index);
-            RoundsManager.instance.NextRound();
         }
     }
 }

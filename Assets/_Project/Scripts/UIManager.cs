@@ -19,13 +19,15 @@ public class UIManager : MonoBehaviour
 
     private void OnLifeChange(int playerIndex, int life)
     {
+        Debug.Log("TODO: mettere grafica vita");
+        
         if (playerIndex == 1)
         {
-            player1LifeText.text = life.ToString();
+            // player1LifeText.text = life.ToString();
         }
         else if (playerIndex == 2)
         {
-            player2LifeText.text = life.ToString();
+            // player2LifeText.text = life.ToString();
         }
     }
 }

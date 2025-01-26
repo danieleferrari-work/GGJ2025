@@ -12,13 +12,13 @@ public class UIGameOver : MonoBehaviour
 
     void OnDestroy()
     {
-        Time.timeScale = 1f;
+        GameManager.instance.gamePaused = false;
     }
 
     public void ShowGameOverScreen()
     {
         gameObject.SetActive(true);
-        Time.timeScale = 0f;
+        GameManager.instance.gamePaused = true;
     }
 
     public void UpdateWinnerText(string winnerName)

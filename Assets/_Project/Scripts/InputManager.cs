@@ -30,12 +30,12 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        Player1MoveLeft = FindAction("Player1MoveLeft").IsPressed();
-        Player1MoveRight = FindAction("Player1MoveRight").IsPressed();
-        Player1Attack = FindAction("Player1Attack").IsPressed();
+        Player1MoveLeft = FindAction("Player1MoveLeft").IsPressed() && !GameManager.instance.gamePaused;
+        Player1MoveRight = FindAction("Player1MoveRight").IsPressed() && !GameManager.instance.gamePaused;
+        Player1Attack = FindAction("Player1Attack").IsPressed() && !GameManager.instance.gamePaused;
 
-        Player2MoveLeft = FindAction("Player2MoveLeft").IsPressed();
-        Player2MoveRight = FindAction("Player2MoveRight").IsPressed();
-        Player2Attack = FindAction("Player2Attack").IsPressed();
+        Player2MoveLeft = FindAction("Player2MoveLeft").IsPressed() && !GameManager.instance.gamePaused;
+        Player2MoveRight = FindAction("Player2MoveRight").IsPressed() && !GameManager.instance.gamePaused;
+        Player2Attack = FindAction("Player2Attack").IsPressed() && !GameManager.instance.gamePaused;
     }
 }
