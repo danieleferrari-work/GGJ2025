@@ -183,11 +183,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f78ec64e272ccd40b16ebe30c5e56f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 30
   damage: 1
   lifeTime: 3
-  equilibriumLostOnHit: 0.3
-  equilibriumLostOnShoot: 0.1
+  equilibriumLostOnHit: 0.5
+  equilibriumLostOnShoot: 0.3
 --- !u!1 &5792971517053481906
 GameObject:
   m_ObjectHideFlags: 0
