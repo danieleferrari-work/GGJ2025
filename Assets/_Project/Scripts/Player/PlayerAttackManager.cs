@@ -10,6 +10,7 @@ public class PlayerAttackManager : MonoBehaviour
     private GameManager gameManager;
     private int playerIndex;
     private float attackDelay;
+    [SerializeField] private float attackAcceleration;
     private float timeSinceLastAttack;
 
     public void Init(int playerIndex, float delay)
