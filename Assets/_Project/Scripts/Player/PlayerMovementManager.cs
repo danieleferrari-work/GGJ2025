@@ -13,7 +13,7 @@ public class PlayerMovementManager : MonoBehaviour
     {
         this.playerIndex = playerIndex;
         this.speed = speed;
-        currentAngle = playerIndex == 1 ? 0 : Mathf.PI;
+        Reset();
     }
 
     void Awake()
@@ -27,6 +27,11 @@ public class PlayerMovementManager : MonoBehaviour
         HandleMovement();
         UpdatePlayerPosition();
         LookAtOpponent();
+    }
+
+    public void Reset()
+    {
+        currentAngle = playerIndex == 1 ? 0 : Mathf.PI;
     }
 
     private void HandleMovement()

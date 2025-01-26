@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -21,14 +20,26 @@ public class Player : MonoBehaviour
     public static UnityAction<int, int> OnLifeChange;
     public string PlayerName => playerName;
     public int Index => index;
+    private int maxLife;
+    private PlayerMovementManager playerMovementManager;
 
 
     public void Awake()
     {
-        GetComponentInChildren<PlayerMovementManager>().Init(index, movementSpeed);
+        maxLife = life;
+        playerMovementManager = GetComponentInChildren<PlayerMovementManager>();
+        playerMovementManager.Init(index, movementSpeed);
         GetComponentInChildren<PlayerAnimations>().Init(index);
         GetComponentInChildren<PlayerAttackManager>().Init(index, attackDelay);
         GetComponentInChildren<OxygenRenderer>().Init(index);
+    }
+
+    public void Reset()
+    {
+        life = maxLife;
+        OnLifeChange?.Invoke(index, life);
+
+        playerMovementManager.Reset();
     }
 
     public void Hit(Bullet bullet)

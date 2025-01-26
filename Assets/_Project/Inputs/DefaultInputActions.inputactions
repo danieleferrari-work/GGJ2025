@@ -106,7 +106,7 @@
                 {
                     "name": "",
                     "id": "05f6913d-c316-48b2-a6bb-e225f14c7960",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -117,7 +117,7 @@
                 {
                     "name": "",
                     "id": "83fcc3fd-1e75-4b93-b9bb-1bebc6a8a452",
-                    "path": "<Keyboard>/upArrow",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -128,7 +128,7 @@
                 {
                     "name": "",
                     "id": "60852372-5daa-4287-a027-7c4adb68128d",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -139,7 +139,7 @@
                 {
                     "name": "",
                     "id": "5a016fc3-0518-413c-938e-37606fdf2a8d",
-                    "path": "<Keyboard>/leftArrow",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -150,7 +150,7 @@
                 {
                     "name": "",
                     "id": "fc51c2eb-9baf-401f-8f01-6397e308bacb",
-                    "path": "<Keyboard>/rightArrow",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -161,7 +161,7 @@
                 {
                     "name": "",
                     "id": "17ab3f37-3513-4db2-bd6a-1dd5e1e185d1",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",

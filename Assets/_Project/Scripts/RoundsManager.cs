@@ -1,16 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using BaseTemplate;
-using TMPro;
 using UnityEngine;
 
 public class RoundsManager : Singleton<RoundsManager>
 {
     [SerializeField] int totalRounds;
-    [SerializeField] UIGameOver gameoverPanel;
-    [SerializeField] GameObject startRoundPanel;
+    [SerializeField] GameObject gameoverPanel;
+
+    [SerializeField] GameObject player1Panel;
+    [SerializeField] GameObject player1WinsText;
     [SerializeField] List<GameObject> player1Stars;
+
+    [SerializeField] GameObject player2Panel;
+    [SerializeField] GameObject player2WinsText;
     [SerializeField] List<GameObject> player2Stars;
+
+    [SerializeField] GameObject VSImage;
 
     int currentRound;
     int player1Score;
@@ -24,7 +30,10 @@ public class RoundsManager : Singleton<RoundsManager>
     {
         base.InitializeInstance();
         arena = FindFirstObjectByType<Arena>();
-        startRoundPanel.SetActive(false);
+        player1Panel.SetActive(false);
+        player2Panel.SetActive(false);
+        VSImage.SetActive(false);
+        gameoverPanel.SetActive(false);
     }
 
     void Start()
@@ -32,50 +41,62 @@ public class RoundsManager : Singleton<RoundsManager>
         currentRound = PlayerPrefs.GetInt("CurrentRound", 1);
         player1Score = PlayerPrefs.GetInt("Player1Score", 0);
         player2Score = PlayerPrefs.GetInt("Player2Score", 0);
+        StartCoroutine(ShowRoundPanel(true, false, false));
     }
 
     public void SetRoundLoser(int loserIndex)
     {
-        if (loserIndex == 1)
-        {
-            Player2Wins();
-        }
-        else
+        bool player1Wins = loserIndex != 1;
+        if (player1Wins)
         {
             Player1Wins();
         }
+        else
+        {
+            Player2Wins();
+        }
 
-        NextRound();
+        NextRound(player1Wins, !player1Wins);
     }
 
-    public void NextRound()
+    public void NextRound(bool player1Wins, bool player2Wins)
     {
         currentRound++;
         PlayerPrefs.SetInt("CurrentRound", currentRound);
 
         if (currentRound > totalRounds)
         {
-            EndGame();
+            EndGame(player1Wins, player2Wins);
         }
         else
         {
             arena.ResetEquilibrium();
-            StartCoroutine(ShowRoundPanel());
+            PlayersManager.instance.Reset();
+            StartCoroutine(ShowRoundPanel(false, player1Wins, player2Wins));
         }
     }
 
-    private void EndGame()
+    private void EndGame(bool player1Wins, bool player2Wins)
     {
-        gameoverPanel.ShowGameOverScreen();
-        bool player1Wins = player1Score > player2Score;
-        gameoverPanel.UpdateWinnerText(player1Wins ? PlayersManager.instance.player1.PlayerName : PlayersManager.instance.player2.PlayerName);
-
-        GameManager.instance.ResetPlayerPrefs();
+        GameManager.instance.gamePaused = true;
+        gameoverPanel.SetActive(true);
+        player1Panel.SetActive(player1Wins);
+        player2Panel.SetActive(player2Wins);
+        player1WinsText.SetActive(player1Wins);
+        player2WinsText.SetActive(player2Wins);
+        
+        arena.ResetEquilibrium();
+        PlayersManager.instance.Reset();
+        PlayerPrefs.DeleteAll();
     }
 
-    private IEnumerator ShowRoundPanel()
+    private IEnumerator ShowRoundPanel(bool showVS, bool player1Wins, bool player2Wins)
     {
-        startRoundPanel.SetActive(true);
+        player1Panel.SetActive(true);
+        player2Panel.SetActive(true);
+        VSImage.SetActive(showVS);
+        player1WinsText.SetActive(player1Wins);
+        player2WinsText.SetActive(player2Wins);
 
         GameManager.instance.gamePaused = true;
 
@@ -83,7 +104,11 @@ public class RoundsManager : Singleton<RoundsManager>
 
         GameManager.instance.gamePaused = false;
 
-        startRoundPanel.SetActive(false);
+        player1Panel.SetActive(false);
+        player2Panel.SetActive(false);
+        player1WinsText.SetActive(false);
+        player2WinsText.SetActive(false);
+        VSImage.SetActive(false);
     }
 
     private void Player1Wins()
@@ -106,5 +131,15 @@ public class RoundsManager : Singleton<RoundsManager>
         {
             player2Stars[i].SetActive(true);
         }
+    }
+
+    public void OnRestartButtonClicked()
+    {
+        GameManager.instance.RestartGame();
+    }
+
+    public void OnMainMenuButtonClicked()
+    {
+        GameManager.instance.LoadMainMenu();
     }
 }
