@@ -1,7 +1,9 @@
 using BaseTemplate.Attributes;
 using BaseTemplate.UIControl;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -9,7 +11,11 @@ public class MainMenuUI : MonoBehaviour
     [Space]
     [SerializeField] OptimizeEventSystem eventSystemController;
     [SerializeField] GameObject mainMenu;
+    [SerializeField] GameObject howToPlay;
+    [SerializeField] CanvasGroup fader;
     [SerializeField] OptionsUI optionsMenu;
+    [SerializeField] AudioSource music;
+    [SerializeField] VideoPlayer howToPlayVideo;
 
     [Header("Auto register to events")]
     [SerializeField] Button playButton;
@@ -19,6 +25,9 @@ public class MainMenuUI : MonoBehaviour
 
     private void Awake()
     {
+        howToPlayVideo.loopPointReached += (VideoPlayer video) => OnEndHowToPlay();
+        music.DOFade(.2f, .5f);
+        music.Play();
         //Auto register to events
         if (playButton) playButton.onClick.AddListener(OnClickPlay);
         if (optionsButton) optionsButton.onClick.AddListener(OnClickOptions);
@@ -37,7 +46,17 @@ public class MainMenuUI : MonoBehaviour
 
     public void OnClickPlay()
     {
-        SceneLoader.LoadScene(playScene);
+        fader.DOFade(1, .5f).onComplete += () =>
+        {
+            howToPlay.SetActive(true);
+            fader.DOFade(0, .1f);
+        };
+        music.DOFade(0, .5f).onComplete += () => music.Stop();
+    }
+
+    public void OnEndHowToPlay()
+    {
+        fader.DOFade(1, .5f).onComplete += () => SceneLoader.LoadScene(playScene);
     }
 
     public void OnClickOptions()

@@ -7,6 +7,7 @@ public class Intro : MonoBehaviour
     [SerializeField] VideoClip clip;
     [SerializeField] GameObject startButton;
     [SerializeField] Animation anim;
+    [SerializeField] GameObject mainMenuManager;
 
     void Start()
     {
@@ -32,5 +33,6 @@ public class Intro : MonoBehaviour
     public void EndQuitIntro()
     {
         gameObject.SetActive(false);
+        mainMenuManager.SetActive(true);
     }
 }
