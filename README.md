@@ -1,4 +1,5 @@
 GLOBAL GAME JAM 2025
+
 Theme: Bubbles
 
 A simple prototype of a local 1v1 shooter created in less than 48 hours.
