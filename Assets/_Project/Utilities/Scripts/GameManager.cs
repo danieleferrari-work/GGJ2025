@@ -1,4 +1,5 @@
 using BaseTemplate;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -13,6 +14,8 @@ public class GameManager : Singleton<GameManager>
     public bool fullScreen = true;
     public bool gamePaused = false;
 
+    protected override bool isDontDestroyOnLoad => false;
+    
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -20,6 +23,7 @@ public class GameManager : Singleton<GameManager>
 
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        Debug.Log("cambioscena");
+        SceneLoader.LoadScene("MainMenu");
     }
 }

@@ -4,14 +4,17 @@ public class Arena : MonoBehaviour
 {
     [SerializeField] EquilibriumManager equilibriumManager;
     [SerializeField] float radius;
+    
     public float Radius => radius;
 
     private float firstAngle;
     private float targetFirstAngle;
     private float targetSecondAngle;
     private float secondAngle;
+
     public float FirstAngle => firstAngle;
     public float SecondAngle => secondAngle;
+
 
     void Start()
     {
@@ -21,18 +24,19 @@ public class Arena : MonoBehaviour
     public void ResetEquilibrium()
     {
         equilibriumManager.equilibrium = 0.5f;
-        CalculatTargetAngles();
-        firstAngle = targetFirstAngle;
-        secondAngle = targetSecondAngle;
+        
+        CalculateZonesAngles();
+        UpdateZoneAngles();
     }
 
     void Update()
     {
-        CalculatTargetAngles();
-        UpdateAngleLerping();
+        CalculateZonesAngles();
+        UpdateZoneAngles();
+        // UpdateAngleLerping();
     }
 
-    private void CalculatTargetAngles()
+    private void CalculateZonesAngles()
     {
         float angle = equilibriumManager.equilibrium * Mathf.PI; // Equilibrium va da 0 a 1, quindi moltiplichiamo per PI
 
@@ -44,7 +48,13 @@ public class Arena : MonoBehaviour
         targetSecondAngle = Mathf.Atan2(secondRadiusPosition.z - transform.position.z, secondRadiusPosition.x - transform.position.x);
     }
 
-    private void UpdateAngleLerping()
+    private void UpdateZoneAngles()
+    {
+        firstAngle = targetFirstAngle;
+        secondAngle = targetSecondAngle;
+    }
+
+    private void UpdateZoneAnglesLerping()
     {
         firstAngle = Mathf.LerpAngle(firstAngle, targetFirstAngle, equilibriumManager.equilibriumChangeSpeed * Time.deltaTime);
         secondAngle = Mathf.LerpAngle(secondAngle, targetSecondAngle, equilibriumManager.equilibriumChangeSpeed * Time.deltaTime);
