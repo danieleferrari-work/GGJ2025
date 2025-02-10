@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class Arena : MonoBehaviour
 {
-    [SerializeField] EquilibriumManager equilibriumManager;
     [SerializeField] float radius;
-    
-    public float Radius => radius;
+    [Range(0.1f, 0.9f)] public float equilibrium;
+    public float equilibriumChangeSpeed;
 
     private float firstAngle;
     private float targetFirstAngle;
     private float targetSecondAngle;
     private float secondAngle;
 
+    public float Radius => radius;
     public float FirstAngle => firstAngle;
     public float SecondAngle => secondAngle;
 
@@ -19,12 +19,13 @@ public class Arena : MonoBehaviour
     void Start()
     {
         ResetEquilibrium();
+        Player.OnShoot += AlterEquilibriumOnShoot;
     }
 
     public void ResetEquilibrium()
     {
-        equilibriumManager.equilibrium = 0.5f;
-        
+        equilibrium = 0.5f;
+
         CalculateZonesAngles();
         UpdateZoneAngles();
     }
@@ -32,13 +33,35 @@ public class Arena : MonoBehaviour
     void Update()
     {
         CalculateZonesAngles();
-        UpdateZoneAngles();
-        // UpdateAngleLerping();
+        // UpdateZoneAngles();
+        UpdateZoneAnglesLerping();
+    }
+
+    void OnDestroy()
+    {
+        Player.OnHit -= AlterEquilibriumOnHit;
+        Player.OnShoot -= AlterEquilibriumOnShoot;
+    }
+
+    public void AlterEquilibrium(int playerIndex, float value)
+    {
+        equilibrium = playerIndex == 1 ? equilibrium - value : equilibrium + value;
+        equilibrium = Mathf.Clamp(equilibrium, 0.1f, 0.9f);
+    }
+
+    public void AlterEquilibriumOnHit(int playerIndex, Bullet bullet)
+    {
+        AlterEquilibrium(playerIndex, bullet.EquilibriumLostOnHit);
+    }
+
+    public void AlterEquilibriumOnShoot(int playerIndex, Bullet bullet)
+    {
+        AlterEquilibrium(playerIndex, bullet.EquilibriumLostOnShoot);
     }
 
     private void CalculateZonesAngles()
     {
-        float angle = equilibriumManager.equilibrium * Mathf.PI; // Equilibrium va da 0 a 1, quindi moltiplichiamo per PI
+        float angle = equilibrium * Mathf.PI; // Equilibrium va da 0 a 1, quindi moltiplichiamo per PI
 
         var firstRadiusPosition = CircleUtils.GetPositionBasedOnAngle(transform.position, radius, angle);
         var secondRadiusPosition = CircleUtils.GetPositionBasedOnAngle(transform.position, radius, -angle);
@@ -56,8 +79,8 @@ public class Arena : MonoBehaviour
 
     private void UpdateZoneAnglesLerping()
     {
-        firstAngle = Mathf.LerpAngle(firstAngle, targetFirstAngle, equilibriumManager.equilibriumChangeSpeed * Time.deltaTime);
-        secondAngle = Mathf.LerpAngle(secondAngle, targetSecondAngle, equilibriumManager.equilibriumChangeSpeed * Time.deltaTime);
+        firstAngle = Mathf.LerpAngle(firstAngle, targetFirstAngle, equilibriumChangeSpeed * Time.deltaTime);
+        secondAngle = Mathf.LerpAngle(secondAngle, targetSecondAngle, equilibriumChangeSpeed * Time.deltaTime);
     }
 
     public float ClampPlayerAngle(int playerIndex, float candidateAngle)
@@ -85,7 +108,6 @@ public class Arena : MonoBehaviour
         }
     }
 
-
     private float NormalizeAngle(float angle)
     {
         while (angle < 0) angle += 2 * Mathf.PI;
@@ -103,21 +125,5 @@ public class Arena : MonoBehaviour
         if (start < end)
             return start <= angle && angle <= end;
         return start <= angle || angle <= end;
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, radius);
-
-        // Calcola le nuove posizioni basate sugli angoli
-        Vector3 firstAnglePosition = CircleUtils.GetPositionBasedOnAngle(transform.position, radius, firstAngle);
-        Vector3 secondAnglePosition = CircleUtils.GetPositionBasedOnAngle(transform.position, radius, secondAngle);
-
-        // Disegna i Gizmos utilizzando le nuove posizioni
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, firstAnglePosition);
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position, secondAnglePosition);
     }
 }

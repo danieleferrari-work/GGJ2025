@@ -45,7 +45,6 @@ public class Player : MonoBehaviour
         if (GameManager.instance.gamePaused)
             return;
 
-        Debug.Log($"player took damage {bullet.Damage}");
         life -= bullet.Damage;
 
         ShowCurrentLife();

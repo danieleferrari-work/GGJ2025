@@ -187,7 +187,7 @@ MonoBehaviour:
   damage: 1
   lifeTime: 3
   equilibriumLostOnHit: 0.5
-  equilibriumLostOnShoot: 0.3
+  equilibriumLostOnShoot: 0.08
 --- !u!1 &5792971517053481906
 GameObject:
   m_ObjectHideFlags: 0
